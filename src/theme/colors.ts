@@ -97,6 +97,8 @@ export const colors = {
   networkBsc: '#F0B90B',
   networkPolygonSoft: 'rgba(164, 87, 255, 0.16)',
   networkEthereumSoft: 'rgba(98, 126, 234, 0.16)',
+  green: '#7ED957',
+  green2: '#6ac742'
 }
 
 type Theme = typeof darkTheme
@@ -197,11 +199,15 @@ export const lightTheme: Theme = {
   backgroundScrim: opacify(60, colors.gray900),
   backgroundScrolledSurface: opacify(72, colors.white),
 
+  // textPrimary: colors.green,
+  // textSecondary: colors.green2,
+  // textTertiary: colors.green,
   textPrimary: colors.gray900,
   textSecondary: colors.gray400,
   textTertiary: colors.gray300,
 
-  accentAction: colors.pink400,
+  accentAction: colors.green,
+  // accentAction: colors.pink400,
   accentActive: colors.blue400,
   accentSuccess: colors.green300,
   accentWarning: colors.gold400,

@@ -83,14 +83,14 @@ const baseMenuItem = style([
 export const menuItem = style([
   baseMenuItem,
   sprinkles({
-    color: 'textSecondary',
+    color: 'inactiveGreen',
   }),
 ])
 
 export const activeMenuItem = style([
   baseMenuItem,
   sprinkles({
-    color: 'textPrimary',
+    color: 'newGreen',
     background: 'backgroundFloating',
   }),
 ])

@@ -62,7 +62,7 @@ const CurrencySelect = styled(ButtonGray)<{
   background-color: ${({ selected, theme }) => (selected ? theme.backgroundInteractive : theme.accentAction)};
   opacity: ${({ disabled }) => (!disabled ? 1 : 0.4)};
   box-shadow: ${({ selected }) => (selected ? 'none' : '0px 6px 10px rgba(0, 0, 0, 0.075)')};
-  color: ${({ selected, theme }) => (selected ? theme.textPrimary : theme.white)};
+  color: ${({ selected, theme }) => (selected ? theme.textPrimary : theme.black)};
   cursor: pointer;
   height: unset;
   border-radius: 16px;
