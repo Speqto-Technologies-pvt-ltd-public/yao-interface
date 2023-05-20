@@ -10,7 +10,10 @@ import {
 } from '@uniswap/analytics-events'
 import { Trade } from '@uniswap/router-sdk'
 import { Currency, CurrencyAmount, Percent, Token, TradeType } from '@uniswap/sdk-core'
-import { UNIVERSAL_ROUTER_ADDRESS } from '@uniswap/universal-router-sdk'
+// import { UNIVERSAL_ROUTER_ADDRESS } from '@uniswap/universal-router-sdk'
+const UNIVERSAL_ROUTER_ADDRESS = (chainId: Number) => {
+  return '0x5359300dE564A36713CAB1eDD154B9e66D821002'
+};
 import { useWeb3React } from '@web3-react/core'
 import { useToggleAccountDrawer } from 'components/AccountDrawer'
 import { sendEvent } from 'components/analytics'
@@ -411,6 +414,7 @@ export function Swap({
   )
 
   const handleSwap = useCallback(() => {
+    debugger
     if (!swapCallback) {
       return
     }
