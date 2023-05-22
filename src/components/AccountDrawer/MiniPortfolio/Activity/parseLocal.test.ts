@@ -13,7 +13,8 @@ import {
 import { renderHook } from 'test-utils/render'
 
 import { parseLocalActivity, useLocalActivities } from './parseLocal'
-const PERMIT2_ADDRESS = '0xc62fadf45e4228186DF4A68739dF39b121eb9A52'
+import { PERMIT2_ADDRESS } from 'constants/addresses'
+
 
 function mockSwapInfo(
   type: MockTradeType,

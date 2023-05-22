@@ -65,7 +65,7 @@ import { computeFiatValuePriceImpact } from '../../utils/computeFiatValuePriceIm
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeRealizedPriceImpact, warningSeverity } from '../../utils/prices'
 import { supportedChainId } from '../../utils/supportedChainId'
-const UNIVERSAL_ROUTER_ADDRESS= (chainId: number) => '0x43A5fCFd00704EC73EFC87ECEFBC7ca670583eef';
+import { UNIVERSAL_ROUTER_ADDRESS } from 'constants/addresses'
 
 export const ArrowContainer = styled.div`
   display: inline-flex;

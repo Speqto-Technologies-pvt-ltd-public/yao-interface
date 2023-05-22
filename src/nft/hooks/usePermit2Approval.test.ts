@@ -5,8 +5,9 @@ import usePermit2Allowance, { AllowanceState } from 'hooks/usePermit2Allowance'
 import { renderHook } from 'test-utils/render'
 
 import usePermit2Approval from './usePermit2Approval'
+import { UNIVERSAL_ROUTER_ADDRESS } from 'constants/addresses'
 
-const UNIVERSAL_ROUTER_ADDRESS= (chainId: number) => '0x43A5fCFd00704EC73EFC87ECEFBC7ca670583eef';
+
 
 const USDCAmount = CurrencyAmount.fromRawAmount(USDC_MAINNET, '10000')
 

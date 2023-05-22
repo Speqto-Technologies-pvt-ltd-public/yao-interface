@@ -5,6 +5,7 @@ import { CurrencyAmount, Token } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
 import PERMIT2_ABI from 'abis/permit2.json'
 import { Permit2 } from 'abis/types'
+import { PERMIT2_ADDRESS } from 'constants/addresses'
 import { useContract } from 'hooks/useContract'
 import { useSingleCallResult } from 'lib/hooks/multicall'
 import ms from 'ms.macro'
@@ -12,7 +13,6 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 
 const PERMIT_EXPIRATION = ms`30d`
 const PERMIT_SIG_EXPIRATION = ms`30m`
-const PERMIT2_ADDRESS = '0xc62fadf45e4228186DF4A68739dF39b121eb9A52'
 
 function toDeadline(expiration: number): number {
   return Math.floor((Date.now() + expiration) / 1000)

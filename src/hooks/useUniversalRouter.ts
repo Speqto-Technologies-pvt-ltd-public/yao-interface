@@ -18,7 +18,8 @@ import isZero from 'utils/isZero'
 import { didUserReject, swapErrorToUserReadableMessage } from 'utils/swapErrorToUserReadableMessage'
 
 import { PermitSignature } from './usePermitAllowance'
-const UNIVERSAL_ROUTER_ADDRESS= (chainId: number) => '0x43A5fCFd00704EC73EFC87ECEFBC7ca670583eef';
+import { UNIVERSAL_ROUTER_ADDRESS } from 'constants/addresses'
+
 /** Thrown when gas estimation fails. This class of error usually requires an emulator to determine the root cause. */
 class GasEstimationError extends Error {
   constructor() {
