@@ -159,6 +159,8 @@ export function useTopTokens(chain: Chain): UseTopTokensReturnValue {
 
   const sparklines = useMemo(() => {
     const unwrappedTokens = sparklineQuery?.topTokens?.map((topToken) => unwrapToken(chainId, topToken))
+    console.log('unwrappedTokens ---------', unwrappedTokens, '-------unwrappedTokens');
+    
     const map: SparklineMap = {}
     unwrappedTokens?.forEach(
       (current) => current?.address && (map[current.address] = current?.market?.priceHistory?.filter(isPricePoint))
