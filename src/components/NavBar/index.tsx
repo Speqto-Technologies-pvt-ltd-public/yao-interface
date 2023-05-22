@@ -8,6 +8,7 @@ import { useAtomValue } from 'jotai/utils'
 import { Box } from 'nft/components/Box'
 import { Row } from 'nft/components/Flex'
 import { UniIcon } from 'nft/components/icons'
+import UniLogo  from 'nft/components/icons/yaoToken.png'
 import { useProfilePageState } from 'nft/hooks'
 import { ProfilePageStateType } from 'nft/types'
 import { ReactNode } from 'react'
@@ -27,6 +28,12 @@ const Nav = styled.nav`
   width: 100%;
   height: ${({ theme }) => theme.navHeight}px;
   z-index: 2;
+  font-family: 'Noot Regular', sans-serif;
+`
+
+const Para = styled.p`
+  font-family: 'Noot Regular', sans-serif;
+  /* color: #7ED957; */
 `
 
 interface MenuItemProps {
@@ -64,7 +71,9 @@ export const PageTabs = () => {
   return (
     <>
       <MenuItem href="/swap" isActive={pathname.startsWith('/swap')}>
-        <Trans>Swap</Trans>
+        <Trans>
+          Swap
+        </Trans>
       </MenuItem>
       <MenuItem href={`/tokens/${chainName.toLowerCase()}`} isActive={pathname.startsWith('/tokens')}>
         <Trans>Tokens</Trans>

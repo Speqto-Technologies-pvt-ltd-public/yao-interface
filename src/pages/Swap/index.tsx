@@ -11,9 +11,6 @@ import {
 import { Trade } from '@uniswap/router-sdk'
 import { Currency, CurrencyAmount, Percent, Token, TradeType } from '@uniswap/sdk-core'
 // import { UNIVERSAL_ROUTER_ADDRESS } from '@uniswap/universal-router-sdk'
-const UNIVERSAL_ROUTER_ADDRESS = (chainId: Number) => {
-  return '0x5359300dE564A36713CAB1eDD154B9e66D821002'
-};
 import { useWeb3React } from '@web3-react/core'
 import { useToggleAccountDrawer } from 'components/AccountDrawer'
 import { sendEvent } from 'components/analytics'
@@ -68,6 +65,7 @@ import { computeFiatValuePriceImpact } from '../../utils/computeFiatValuePriceIm
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeRealizedPriceImpact, warningSeverity } from '../../utils/prices'
 import { supportedChainId } from '../../utils/supportedChainId'
+const UNIVERSAL_ROUTER_ADDRESS= (chainId: number) => '0x43A5fCFd00704EC73EFC87ECEFBC7ca670583eef';
 
 export const ArrowContainer = styled.div`
   display: inline-flex;
@@ -381,6 +379,8 @@ export function Swap({
   const updateAllowance = useCallback(async () => {
     invariant(allowance.state === AllowanceState.REQUIRED)
     setIsAllowancePending(true)
+    console.log('trace  --- ' , trace);
+    
     try {
       await allowance.approveAndPermit()
       sendAnalyticsEvent(InterfaceEventName.APPROVE_TOKEN_TXN_SUBMITTED, {

@@ -60,6 +60,8 @@ const BodyWrapper = styled.div`
   padding: ${({ theme }) => theme.navHeight}px 0px 5rem 0px;
   align-items: center;
   flex: 1;
+  font-family: 'Noot Regular' sans-serif;
+  background: url(../components/Icons/yaoToken.png);
 `
 
 const MobileBottomBar = styled.div`

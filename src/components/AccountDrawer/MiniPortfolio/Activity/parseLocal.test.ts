@@ -1,5 +1,5 @@
 import { SupportedChainId, Token, TradeType as MockTradeType } from '@uniswap/sdk-core'
-import { PERMIT2_ADDRESS } from '@uniswap/universal-router-sdk'
+// import { PERMIT2_ADDRESS } from '@uniswap/universal-router-sdk'
 import { DAI as MockDAI, nativeOnChain, USDC_MAINNET as MockUSDC_MAINNET } from 'constants/tokens'
 import { TransactionStatus as MockTxStatus } from 'graphql/data/__generated__/types-and-hooks'
 import { ChainTokenMap } from 'hooks/Tokens'
@@ -13,6 +13,7 @@ import {
 import { renderHook } from 'test-utils/render'
 
 import { parseLocalActivity, useLocalActivities } from './parseLocal'
+const PERMIT2_ADDRESS = '0xc62fadf45e4228186DF4A68739dF39b121eb9A52'
 
 function mockSwapInfo(
   type: MockTradeType,

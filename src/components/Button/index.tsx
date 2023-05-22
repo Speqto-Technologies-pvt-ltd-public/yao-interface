@@ -70,7 +70,7 @@ export const ButtonPrimary = styled(BaseButton)`
   font-size: 20px;
   font-weight: 600;
   padding: 16px;
-  color: ${({ theme }) => theme.accentTextLightPrimary};
+  color: ${({ theme }) => theme.black};
   &:focus {
     box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, theme.accentAction)};
     background-color: ${({ theme }) => darken(0.05, theme.accentAction)};

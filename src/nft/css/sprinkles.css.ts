@@ -203,6 +203,8 @@ export const vars = createGlobalTheme(':root', {
     lightGrayOverlay: '#99A1BD14',
     accentActiveSoft: '#4c82fb3d',
     accentActive: '#4C82FB',
+    newGreen: '#7ED957',
+    inactiveGreen: 'rgba(126, 217, 87, 0.7)'
   },
   border: {
     transculent: '1.5px solid rgba(0, 0, 0, 0.1)',
