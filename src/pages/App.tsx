@@ -61,7 +61,7 @@ const BodyWrapper = styled.div`
   align-items: center;
   flex: 1;
   font-family: 'Noot Regular' sans-serif;
-  background: url(../components/Icons/yaoToken.png);
+  background: url(/images/bg.webp);
 `
 
 const MobileBottomBar = styled.div`
