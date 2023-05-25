@@ -432,6 +432,11 @@ interface LoadedRowProps {
 /* Loaded State: row component with token information */
 export const LoadedRow = forwardRef((props: LoadedRowProps, ref: ForwardedRef<HTMLDivElement>) => {
   const { tokenListIndex, tokenListLength, token, sortRank } = props
+
+  // console.log('tokenListIndex',tokenListIndex);
+  // console.log('token',token);
+  // console.log(' sortRank', sortRank);
+  
   const filterString = useAtomValue(filterStringAtom)
 
   const filterNetwork = validateUrlChainParam(useParams<{ chainName?: string }>().chainName?.toUpperCase())
