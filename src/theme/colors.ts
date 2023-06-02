@@ -103,6 +103,7 @@ export const colors = {
 
 type Theme = typeof darkTheme
 
+
 const commonTheme = {
   white: colors.white,
   black: colors.black,
@@ -111,6 +112,7 @@ const commonTheme = {
   chain_3: colors.yellow400,
   chain_4: colors.pink400,
   chain_5: colors.green400,
+  chain_11155111: colors.green400,
   chain_10: colors.networkOptimism,
   chain_137: colors.networkPolygon,
   chain_42: colors.networkArbitrum,

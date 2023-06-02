@@ -90,7 +90,7 @@ const TrendingCollections = () => {
   const [isEthToggled, setEthToggled] = useState(true)
 
   const { data: trendingCollections, loading: trendingCollectionsAreLoading } = useTrendingCollections(
-    100,
+    5,
     convertTimePeriodToHistoryDuration(timePeriod)
   )
 
@@ -103,6 +103,10 @@ const TrendingCollections = () => {
 
   const trendingCollectionColumns = useMemo(() => {
     if (!trendingCollectionsAreLoading && trendingCollections) {
+      
+      console.log('timePeriod',timePeriod);
+      console.log('trendingCollections',trendingCollections);
+      
       return trendingCollections.map((d) => ({
         ...d,
         collection: {

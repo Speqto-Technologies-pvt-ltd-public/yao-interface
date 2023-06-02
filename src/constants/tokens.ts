@@ -25,6 +25,13 @@ const USDC_GOERLI = new Token(
   'USDC',
   'USD//C'
 )
+const USDC_SEPOLIA = new Token(
+  SupportedChainId.SEPOLIA,
+  '0xd02fa907ee94Db585Cb18dfaf58B9b7B090a0484',
+  6,
+  'USDC',
+  'USD//C'
+)
 export const USDC_OPTIMISM = new Token(
   SupportedChainId.OPTIMISM,
   '0x7F5c764cBc14f9669B88837ca1490cCa17c31607',
@@ -360,6 +367,7 @@ export const UNI: { [chainId: number]: Token } = {
 }
 
 export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } = {
+  
   ...(WETH9 as Record<SupportedChainId, Token>),
   [SupportedChainId.OPTIMISM]: new Token(
     SupportedChainId.OPTIMISM,
@@ -423,6 +431,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } =
     18,
     'WBNB',
     'Wrapped BNB'
+  ),
+  [SupportedChainId.SEPOLIA]: new Token(
+    SupportedChainId.SEPOLIA,
+    '0x7b79995e5f793a07bc00c21412e50ecae098e7f9',
+    18,
+    'WETH',
+    'Wrapped Ether'
   ),
 }
 
@@ -488,6 +503,7 @@ class BscNativeCurrency extends NativeCurrency {
 class ExtendedEther extends Ether {
   public get wrapped(): Token {
     const wrapped = WRAPPED_NATIVE_CURRENCY[this.chainId]
+    console.log('wrapped---' , wrapped);
     if (wrapped) return wrapped
     throw new Error(`Unsupported chain ID: ${this.chainId}`)
   }
@@ -535,5 +551,6 @@ export const TOKEN_SHORTHANDS: { [shorthand: string]: { [chainId in SupportedCha
     [SupportedChainId.CELO]: PORTAL_USDC_CELO.address,
     [SupportedChainId.CELO_ALFAJORES]: PORTAL_USDC_CELO.address,
     [SupportedChainId.GOERLI]: USDC_GOERLI.address,
+    [SupportedChainId.SEPOLIA]: USDC_SEPOLIA.address
   },
 }

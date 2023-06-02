@@ -458,6 +458,9 @@ export const LoadedRow = forwardRef((props: LoadedRowProps, ref: ForwardedRef<HT
     search_token_address_input: filterString,
   }
 
+  console.log(formatNumber(token.market?.totalValueLocked?.value, NumberType.FiatTokenStats),'token.market?.totalValueLocked?.value, NumberType.FiatTokenStats');
+  console.log(token   ," NumberType.FiatTokenStats");
+  
   // TODO: currency logo sizing mobile (32px) vs. desktop (24px)
   return (
     <div ref={ref} data-testid={`token-table-row-${token.symbol}`}>

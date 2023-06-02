@@ -90,6 +90,8 @@ export function formatCollectionQueryData(
   queryCollection: NonNullable<NftCollection>,
   address?: string
 ): GenieCollection {
+  
+  // console.log('queryCollection?.markets?.[0]',queryCollection?.markets?.[0]);
   const market = queryCollection?.markets?.[0]
   if (!address && !queryCollection?.nftContracts?.[0]?.address) return {} as GenieCollection
   const traits = {} as Record<string, Trait[]>

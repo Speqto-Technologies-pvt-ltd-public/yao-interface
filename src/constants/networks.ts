@@ -1,9 +1,14 @@
 import { SupportedChainId } from 'constants/chains'
 
 const INFURA_KEY = process.env.REACT_APP_INFURA_KEY
-if (typeof INFURA_KEY === 'undefined') {
-  throw new Error(`REACT_APP_INFURA_KEY must be a defined environment variable`)
+const SEPOLIA_INFURA_KEY = process.env.REACT_APP_INFURA_KEY_SEPOLIA
+console.log('INFURA_KEY ---------',INFURA_KEY);
+console.log('SEPOLIA_INFURA_KEY ---------',SEPOLIA_INFURA_KEY);
+
+if (typeof (INFURA_KEY || SEPOLIA_INFURA_KEY) === 'undefined') {
+  throw new Error(`REACT_APP_INFURA_KEY || REACT_APP_INFURA_KEY_SEPOLIA  must be a defined environment variable`)
 }
+
 const QUICKNODE_RPC_URL = process.env.REACT_APP_BNB_RPC_URL
 if (typeof QUICKNODE_RPC_URL === 'undefined') {
   throw new Error(`REACT_APP_BNB_RPC_URL must be a defined environment variable`)
@@ -89,6 +94,10 @@ export const FALLBACK_URLS = {
     'https://bsc-dataseed4.defibit.io',
     'https://rpc.ankr.com/bsc',
   ],
+  [SupportedChainId.SEPOLIA]: [
+    // "Safe" URLS
+    'https://eth-sepolia.g.alchemy.com/v2/sqBBl4qzJjt1n5sF_hlPWZ_sXBh1yL86'
+  ]
 }
 
 /**
@@ -101,6 +110,7 @@ export const RPC_URLS = {
     ...FALLBACK_URLS[SupportedChainId.MAINNET],
   ],
   [SupportedChainId.GOERLI]: [`https://goerli.infura.io/v3/${INFURA_KEY}`, ...FALLBACK_URLS[SupportedChainId.GOERLI]],
+  [SupportedChainId.SEPOLIA]: [`https://eth-sepolia.g.alchemy.com/v2/${SEPOLIA_INFURA_KEY}`, ...FALLBACK_URLS[SupportedChainId.SEPOLIA]],
   [SupportedChainId.OPTIMISM]: [
     `https://optimism-mainnet.infura.io/v3/${INFURA_KEY}`,
     ...FALLBACK_URLS[SupportedChainId.OPTIMISM],

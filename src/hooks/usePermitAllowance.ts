@@ -19,6 +19,7 @@ function toDeadline(expiration: number): number {
 }
 
 export function usePermitAllowance(token?: Token, owner?: string, spender?: string) {
+const {chainId } = useWeb3React()
   const contract = useContract<Permit2>(PERMIT2_ADDRESS, PERMIT2_ABI)
   const inputs = useMemo(() => [owner, token?.address, spender], [owner, spender, token?.address])
 
