@@ -46,44 +46,41 @@ const SEPOLIA_ROUTER_V2_ADDRESS = '0x4C61D6dFbae61179cdDA923f3C1136b3BfC47Cc3'
 const SEPOLIA_UNISWAP_INTERFACE_MULTICALL = '0xb2b815E0fECB43839e3E8ba08bb22B0025eC95Ab'
 const SEPOLIA_PERMIT2_ADDRESS = '0x3F2Ba73da6812F222cB3452D76AbCe58AAf7802f'
 const SEPOLIA_UNIVERSAL_ROUTER_ADDRESS = '0x23F3fb0Fc20aC34392ce4dF30024FBC6023e813A'
+
 const SEPOLIA_YAO_TOKEN_ADDRESS = '0xCD0740b36322B0Be79bA0fa8dae151158E28b404'
-
-// export const PERMIT2_ADDRESS = _PERMIT2_ADDRESS;
-export const PERMIT2_ADDRESS = SEPOLIA_PERMIT2_ADDRESS;
-// export const PERMIT2_ADDRESS  = (chainId: number): string => {
-//   console.log('chainId  ----> ' ,chainId);
+export const PERMIT2_ADDRESS  = (chainId: number): string => {
+  console.log('chainId  ----> ' ,chainId);
   
-//   switch (chainId) {
-//     case 1: // mainnet
-//       return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
-//     case 5: // goerli
-//       return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
-//     case 11155111: // sepolia
-//       return SEPOLIA_PERMIT2_ADDRESS
-//     case 137: // polygon
-//       return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
-//     case 80001: // polygon mumbai
-//       return _PERMIT2_ADDRESS
-//     case 10: // optimism
-//       return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
-//     case 420: // optimism goerli
-//       return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
-//     case 42161: // arbitrum
-//       return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
-//     case 421613: // arbitrum goerli
-//       return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
-//     case 42220: // celo
-//       return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
-//     case 44787: // celo alfajores
-//       return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
-//     case 56: // binance smart chain
-//       return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
-//     default:
-//       throw new Error(`Permit 2 address  not deployed on chain ${chainId}`)
-//   }
-// }
+  switch (chainId) {
+    case 1: // mainnet
+      return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+    case 5: // goerli
+      return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+    case 11155111: // sepolia
+      return SEPOLIA_PERMIT2_ADDRESS
+    case 137: // polygon
+      return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+    case 80001: // polygon mumbai
+      return _PERMIT2_ADDRESS
+    case 10: // optimism
+      return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+    case 420: // optimism goerli
+      return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+    case 42161: // arbitrum
+      return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+    case 421613: // arbitrum goerli
+      return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+    case 42220: // celo
+      return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+    case 44787: // celo alfajores
+      return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+    case 56: // binance smart chain
+      return '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+    default:
+      throw new Error(`Permit 2 address  not deployed on chain ${chainId}`)
+  }
+}
 
-// export const UNIVERSAL_ROUTER_ADDRESS = (chainId: number) => _UNIVERSAL_ROUTER_ADDRESS;
 export const UNIVERSAL_ROUTER_ADDRESS = (chainId: number): string => {
   switch (chainId) {
     case 1: // mainnet
@@ -124,7 +121,7 @@ function constructSameAddressMap(address: string, additionalNetworks: SupportedC
   }, {})
 }
 
-// export const UNI_ADDRESS: AddressMap = constructSameAddressMap('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984')
+// export const UNI_ADDRESS: AddressMap = constructSameAddressMap(SEPOLIA_YAO_TOKEN_ADDRESS)
 export const UNI_ADDRESS: AddressMap = {
   ...constructSameAddressMap(_YAO_TOKEN_ADDRESS, [SupportedChainId.POLYGON_MUMBAI]),
   [SupportedChainId.SEPOLIA]: SEPOLIA_YAO_TOKEN_ADDRESS,
