@@ -1,13 +1,16 @@
 import { Trans } from '@lingui/macro'
 import { PAGE_SIZE, useTopTokens } from 'graphql/data/TopTokens'
 import { validateUrlChainParam } from 'graphql/data/util'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { AlertTriangle } from 'react-feather'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components/macro'
-
+import axios from 'axios'
 import { MAX_WIDTH_MEDIA_BREAKPOINT } from '../constants'
 import { HeaderRow, LoadedRow, LoadingRow } from './TokenRow'
+import { useTokenQuery } from 'graphql/data/__generated__/types-and-hooks'
+import { ChainName } from '@uniswap/smart-order-router'
+import { useTopMemeTokens } from 'graphql/data/TopMemeTokens'
 
 const GridContainer = styled.div`
   display: flex;
@@ -77,9 +80,42 @@ function LoadingTokenTable({ rowCount = PAGE_SIZE }: { rowCount?: number }) {
 
 export default function TokenTable() {
   const chainName = validateUrlChainParam(useParams<{ chainName?: string }>().chainName)
+
   const { tokens, tokenSortRank, loadingTokens, sparklines } = useTopTokens(chainName)
+  // console.log('tokens -->', tokens);
+  // console.log('tokenSortRank -->',tokenSortRank);
+  // console.log('loadingTokens -->',loadingTokens);
+  // console.log('sparklines -->',sparklines);  
+
+  const { memetokens, memetokenSortRank, memesparklines, memeloadingTokens } = useTopMemeTokens(chainName)
+  // console.log('memetokens ========>>>>', memetokens);
+  
+  // const MemeTokens = async () => {
+  //   await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&per_page=100&page=1&sparkline=true')
+  //     .then((res) => {
+  //       // console.log('Top Meme Tokens',res.data);
+  //     }).catch((err) => {
+  //       console.log('Top meme tokens Error', err)
+  //     })
+  // }
+  // const [memeTokens, setmemeTokens] = useState();
+  // useEffect(() => {
+  //   const { data: tokenQuery } = useTokenQuery({
+  //     variables: {// ETHEREUM
+  //       address: '0x6982508145454ce325ddbe47a25d4ec3d2311933',
+  //       chain: chainName
+  //     },
+  //     errorPolicy: 'all',
+  //   })
+  //   console.log('tokenQuery ----------->', tokenQuery);
+  //   // setmemeTokens(tokenQuery?.token)
+  //   // MemeTokens()
+  // }, [])
 
   /* loading and error state */
+
+ 
+  
   if (loadingTokens && !tokens) {
     return <LoadingTokenTable rowCount={PAGE_SIZE} />
   } else if (!tokens) {
@@ -100,6 +136,7 @@ export default function TokenTable() {
       <GridContainer>
         <HeaderRow />
         <TokenDataContainer>
+
           {tokens.map(
             (token, index) =>
               token?.address && (
@@ -113,6 +150,7 @@ export default function TokenTable() {
                 />
               )
           )}
+
         </TokenDataContainer>
       </GridContainer>
     )

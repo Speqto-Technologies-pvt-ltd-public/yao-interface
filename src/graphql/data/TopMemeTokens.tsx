@@ -11,10 +11,13 @@ import { useMemo } from 'react'
 
 import {
   Chain,
+  TopMemeTokenQueryTest,
   TopTokens100Document,
   TopTokens100DocumentCopy,
   TopTokens100Query,
   useTokenQuery,
+  useTopMemeTokenQuery,
+  useTopMemeTokenQueryTest,
   useTopTokens100Query,
   useTopTokensSparklineQuery,
 } from './__generated__/types-and-hooks'
@@ -143,19 +146,27 @@ function useFilteredTokens(tokens: TopTokens100Query['topTokens']) {
 // Number of items to render in each fetch in infinite scroll.
 export const PAGE_SIZE = 20
 export type SparklineMap = { [key: string]: PricePoint[] | undefined }
-export type TopToken = NonNullable<NonNullable<TopTokens100Query>['topTokens']>[number]
+// export type TopToken = NonNullable<NonNullable<TopTokens100Query>['topTokens']>[number]
+export type TopToken = NonNullable<NonNullable<TopMemeTokenQueryTest>['token']>[number]
 
 interface UseTopTokensReturnValue {
-  tokens: TopToken[] | undefined
-  tokenSortRank: Record<string, number>
-  loadingTokens: boolean
-  sparklines: SparklineMap
+  memetokens: TopToken[] | undefined
+  memetokenSortRank: Record<string, number>
+  memeloadingTokens: boolean
+  memesparklines: SparklineMap
+}
+interface UseTopMemeTokensReturnValue {
+  memetokens: TopToken[] | undefined
+  memetokenSortRank: Record<string, number>
+  memeloadingTokens: boolean
+  memesparklines: SparklineMap
 }
 
-export function useTopTokens(chain: Chain): UseTopTokensReturnValue {
+
+export function useTopMemeTokens(chain: Chain): UseTopMemeTokensReturnValue {
   const chainId = CHAIN_NAME_TO_CHAIN_ID[chain]
   const duration = toHistoryDuration(useAtomValue(filterTimeAtom))
-  // console.log('duration', duration);
+  console.log('duration', duration);
 
   const { data: sparklineQuery } = usePollQueryWhileMounted(
     useTopTokensSparklineQuery({
@@ -166,16 +177,14 @@ export function useTopTokens(chain: Chain): UseTopTokensReturnValue {
   // const { data: data1, error: error1 } = useQuery(TopTokens100DocumentCopy, {
   //   variables: { duration: 'DAY', chain: 'ETHEREUM' },
   // });
-
   // console.log('data1', data1);
   // console.log('error1', error1);
+
   // const tokenDetails = getTokenDetailsURL({ address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', chain });
   // console.log('tokenDetails', tokenDetails);
 
 
-
-
-  const sparklines = useMemo(() => {
+  const memesparklines = useMemo(() => {
     const unwrappedTokens = sparklineQuery?.topTokens?.map((topToken) => unwrapToken(chainId, topToken))
     // console.log('unwrappedTokens ---------', unwrappedTokens, '-------unwrappedTokens');
 
@@ -186,18 +195,61 @@ export function useTopTokens(chain: Chain): UseTopTokensReturnValue {
     return map
   }, [chainId, sparklineQuery?.topTokens])
 
-  const { data, loading: loadingTokens } = usePollQueryWhileMounted(
+  const { data, loading: memeloadingTokens } = usePollQueryWhileMounted(
     useTopTokens100Query({
       variables: { duration, chain },
     }),
     PollingInterval.Fast
   )
 
+  let MemeTokenAddresses = [
+    '0x6bf765c43030387a983f429c1438e9d2025b7e12',
+    '0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce',
+    '0x761d38e5ddf6ccf6cf7c55759d5210750b5d60f3',
+    '0xc5fb36dd2fb59d3b98deff88425a3f425ee469ed',
+    '0x7d8146cf21e8d7cbe46054e01588207b51198729',
+    '0x12b6893ce26ea6341919fe289212ef77e51688c8',
+    '0xa35923162c49cf95e6bf26623385eb431ad920d3',
+    '0x49642110b712c1fd7261bc074105e9e44676c68f',
+    '0x5026f006b85729a8b14553fae6af249ad16c9aab',
+    '0xfb130d93e49dca13264344966a611dc79a456bc5'
+  ]
 
-  const unwrappedTokens = useMemo(() => data?.topTokens?.map((token) => unwrapToken(chainId, token)), [chainId, data])
-  const sortedTokens = useSortedTokens(unwrappedTokens)
+  // const TopMemeTokenData = MemeTokenAddresses.map((addr) => {
+  //   const { data: data2, loading: memeloadingTokens2 } = usePollQueryWhileMounted(
+  //     useTopMemeTokenQuery({
+  //       variables: {// ETHEREUM
+  //         address: addr,
+  //         chain: chain
+  //       },
+  //       errorPolicy: 'all',
+  //     }),
+  //     PollingInterval.Fast
+  //   )
+  //   return data2?.token
+  // })
+  const TopMemeTokenDataTest = MemeTokenAddresses.map((addr) => {
+    const { data: data2, loading: memeloadingTokens2 } = usePollQueryWhileMounted(
+      useTopMemeTokenQueryTest({
+        variables: {// ETHEREUM
+          chain: chain,
+          address: addr
+        },
+        errorPolicy: 'all',
+      }),
+      PollingInterval.Fast
+    )
+    return data2?.token
+  })
   
-  const tokenSortRank = useMemo(
+  // console.log('data -----> ', data);
+  // console.log('TopMemeTokenDataTest -----> ', TopMemeTokenDataTest);
+  
+// const topMemeUnwrappedTokens = useMemo(() => data1?.topTokens.map((token) => unwrapToken(chainId, token)), [chainId, data1])
+  const unwrappedTokens = useMemo(() => data?.topTokens?.map((token) => unwrapToken(chainId, token)), [chainId, data])
+
+  const sortedTokens = useSortedTokens(unwrappedTokens)
+  const memetokenSortRank = useMemo(
     () =>
       sortedTokens?.reduce((acc, cur, i) => {
         if (!cur.address) return acc
@@ -208,16 +260,20 @@ export function useTopTokens(chain: Chain): UseTopTokensReturnValue {
       }, {}) ?? {},
     [sortedTokens]
   )
-    
-  
+
 
 
   const filteredTokens = useFilteredTokens(sortedTokens)
 
 
+ 
   return useMemo(
-    () => ({ tokens: filteredTokens, tokenSortRank, loadingTokens, sparklines }),
-    [filteredTokens, tokenSortRank, loadingTokens, sparklines]
+    () => ({ memetokens: filteredTokens, memetokenSortRank, memeloadingTokens, memesparklines  }),
+    [filteredTokens, memetokenSortRank, memeloadingTokens, memesparklines]
   )
+
+
+
+
 }
 

@@ -110,6 +110,14 @@ export default function TokenDetails({
     [urlAddress]
   )
 
+  console.log('=============================================',urlAddress,
+    inputTokenAddress,
+    chain,
+    tokenQuery,
+    tokenPriceQuery,
+    onChangeTimePeriod,);
+  
+
   const { chainId: connectedChainId } = useWeb3React()
   const pageChainId = CHAIN_NAME_TO_CHAIN_ID[chain]
 

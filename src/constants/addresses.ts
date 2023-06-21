@@ -48,6 +48,8 @@ const SEPOLIA_PERMIT2_ADDRESS = '0x3F2Ba73da6812F222cB3452D76AbCe58AAf7802f'
 const SEPOLIA_UNIVERSAL_ROUTER_ADDRESS = '0x23F3fb0Fc20aC34392ce4dF30024FBC6023e813A'
 
 const SEPOLIA_YAO_TOKEN_ADDRESS = '0xCD0740b36322B0Be79bA0fa8dae151158E28b404'
+
+
 export const PERMIT2_ADDRESS  = (chainId: number): string => {
   console.log('chainId  ----> ' ,chainId);
   
@@ -190,6 +192,7 @@ export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
 }
 
 export const V3_MIGRATOR_ADDRESSES: AddressMap = {
+  
   // ...constructSameAddressMap('0xA5644E29708357803b5A882D272c41cC0dF92B34', [
   ...constructSameAddressMap(_V3_MIGRATOR_ADDRESS, [ //changed
     SupportedChainId.ARBITRUM_ONE,
@@ -264,6 +267,14 @@ export const QUOTER_ADDRESSES: AddressMap = {
   [SupportedChainId.ARBITRUM_GOERLI]: ARBITRUM_GOERLI_QUOTER_ADDRESSES,
   [SupportedChainId.SEPOLIA]: SEPOLIA_QUOTER_ADDRESS,
 }
+// const MainnetAddress = constructSameAddressMap(_POSITION_MANAGER_ADDRESS, [
+//   SupportedChainId.OPTIMISM,
+//   SupportedChainId.ARBITRUM_ONE,
+//   SupportedChainId.POLYGON_MUMBAI,
+//   SupportedChainId.POLYGON,
+// ])
+
+// console.log('MainnetAddress ==========>>>>>>',MainnetAddress);
 
 export const NONFUNGIBLE_POSITION_MANAGER_ADDRESSES: AddressMap = {
   // ...constructSameAddressMap('0xC36442b4a4522E871399CD717aBDD847Ab11FE88', [

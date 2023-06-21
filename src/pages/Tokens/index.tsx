@@ -3,6 +3,7 @@ import { Trace } from '@uniswap/analytics'
 import { InterfacePageName } from '@uniswap/analytics-events'
 import { MAX_WIDTH_MEDIA_BREAKPOINT, MEDIUM_MEDIA_BREAKPOINT } from 'components/Tokens/constants'
 import { filterStringAtom } from 'components/Tokens/state'
+import MemeTokenTable from 'components/Tokens/TokenTable/MemeTokenTable'
 import NetworkFilter from 'components/Tokens/TokenTable/NetworkFilter'
 import SearchBar from 'components/Tokens/TokenTable/SearchBar'
 import TimeSelector from 'components/Tokens/TokenTable/TimeSelector'
@@ -96,7 +97,8 @@ const Tokens = () => {
             <SearchBar />
           </SearchContainer>
         </FiltersWrapper>
-        <TokenTable />
+        <MemeTokenTable />
+        // <TokenTable />
       </ExploreContainer>
     </Trace>
   )
