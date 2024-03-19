@@ -12,7 +12,7 @@ import { useMemo } from 'react'
 import {
   Chain,
   TopTokens100Document,
-  TopTokens100DocumentCopy,
+  // TopTokens100DocumentCopy,
   TopTokens100Query,
   useTokenQuery,
   useTopTokens100Query,

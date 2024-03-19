@@ -129,6 +129,8 @@ export const CHAIN_NAME_TO_CHAIN_ID: { [key in Chain]: SupportedChainId } = {
   [Chain.UnknownChain]: SupportedChainId.MAINNET,
   [Chain.Bnb]: SupportedChainId.BNB,
   [Chain.EthereumSepolia]: SupportedChainId.SEPOLIA,
+  [Chain.Avalanche]: SupportedChainId.AVALANCHE, // Example, adjust based on actual enum values
+  [Chain.Base]: SupportedChainId.BASE,
 }
 
 export function fromGraphQLChain(chain: Chain): SupportedChainId {

@@ -2,16 +2,19 @@ import { SupportedChainId } from 'constants/chains'
 
 const INFURA_KEY = process.env.REACT_APP_INFURA_KEY
 const SEPOLIA_INFURA_KEY = process.env.REACT_APP_INFURA_KEY_SEPOLIA
-console.log('INFURA_KEY ---------',INFURA_KEY);
-console.log('SEPOLIA_INFURA_KEY ---------',SEPOLIA_INFURA_KEY);
 
 if (typeof (INFURA_KEY || SEPOLIA_INFURA_KEY) === 'undefined') {
   throw new Error(`REACT_APP_INFURA_KEY || REACT_APP_INFURA_KEY_SEPOLIA  must be a defined environment variable`)
 }
 
 const QUICKNODE_RPC_URL = process.env.REACT_APP_BNB_RPC_URL
+const ALCHEMY_BASE_SEPOLIA_RPC_URL = process.env.REACT_APP_BASE_SEPOLIA_RPC
+
 if (typeof QUICKNODE_RPC_URL === 'undefined') {
   throw new Error(`REACT_APP_BNB_RPC_URL must be a defined environment variable`)
+}
+if (typeof ALCHEMY_BASE_SEPOLIA_RPC_URL === 'undefined') {
+  throw new Error(`REACT_APP_BASE_SEPOLIA_RPC must be a defined environment variable`)
 }
 
 /**
@@ -97,7 +100,11 @@ export const FALLBACK_URLS = {
   [SupportedChainId.SEPOLIA]: [
     // "Safe" URLS
     'https://eth-sepolia.g.alchemy.com/v2/sqBBl4qzJjt1n5sF_hlPWZ_sXBh1yL86'
-  ]
+  ],
+  [SupportedChainId.BASE_SEPOLIA]: [
+    // "Safe" URLS
+    'https://base-sepolia.g.alchemy.com/v2/9ZDqgiD-36R-hue-GBrF-rxRR2Ef7R0W'
+  ],
 }
 
 /**
@@ -138,4 +145,9 @@ export const RPC_URLS = {
   [SupportedChainId.CELO]: FALLBACK_URLS[SupportedChainId.CELO],
   [SupportedChainId.CELO_ALFAJORES]: FALLBACK_URLS[SupportedChainId.CELO_ALFAJORES],
   [SupportedChainId.BNB]: [QUICKNODE_RPC_URL, ...FALLBACK_URLS[SupportedChainId.BNB]],
+
+
+  [SupportedChainId.AVALANCHE]: [],
+  [SupportedChainId.BASE]: [],
+  [SupportedChainId.BASE_SEPOLIA]: [ALCHEMY_BASE_SEPOLIA_RPC_URL, ...FALLBACK_URLS[SupportedChainId.BASE_SEPOLIA]],
 }

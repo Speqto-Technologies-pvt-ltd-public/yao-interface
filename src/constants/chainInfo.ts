@@ -11,6 +11,8 @@ import optimismSquareLogoUrl from 'assets/svg/optimism_square_logo.svg'
 import optimismLogoUrl from 'assets/svg/optimistic_ethereum.svg'
 import polygonSquareLogoUrl from 'assets/svg/polygon_square_logo.svg'
 import polygonMaticLogo from 'assets/svg/polygon-matic-logo.svg'
+import baseLogo from 'assets/svg/base_logo.svg'
+import baseSquareLogo from 'assets/svg/base_square_logo.svg'
 import ms from 'ms.macro'
 import { darkTheme } from 'theme/colors'
 
@@ -18,6 +20,8 @@ import { SupportedChainId, SupportedL1ChainId, SupportedL2ChainId } from './chai
 import { ARBITRUM_LIST, CELO_LIST, OPTIMISM_LIST, PLASMA_BNB_LIST } from './lists'
 
 export const AVERAGE_L1_BLOCK_TIME = ms`12s`
+export const BASE_LIST = 'https://raw.githubusercontent.com/ethereum-optimism/ethereum-optimism.github.io/master/optimism.tokenlist.json'
+
 
 export enum NetworkType {
   L1,
@@ -223,6 +227,22 @@ const CHAIN_INFO: ChainInfoMap = {
     color: darkTheme.chain_56,
     backgroundColor: darkTheme.chain_56_background,
   },
+  [SupportedChainId.BASE_SEPOLIA]: {
+    networkType: NetworkType.L2,
+    blockWaitMsBeforeWarning: ms`25m`,
+    bridge: 'https://sepolia-bridge.base.org/deposit',
+    defaultListUrl: BASE_LIST,
+    docs: 'https://docs.base.org',
+    explorer: 'https://sepolia.basescan.org/',
+    infoLink: 'https://info.uniswap.org/#/base/', // base testnet not supported
+    label: 'Base Sepolia',
+    logoUrl: baseLogo,
+    statusPage: 'https://status.base.org/',
+    circleLogoUrl: baseLogo,
+    squareLogoUrl: baseSquareLogo,
+    nativeCurrency: { name: 'Base Sepolia Ether', symbol: 'ETH', decimals: 18 },
+    color: '#0052FF',
+  },
 }
 
 export function getChainInfo(chainId: SupportedL1ChainId): L1ChainInfo
@@ -249,5 +269,8 @@ export function getChainInfo(chainId: any): any {
 
 const MAINNET_INFO = CHAIN_INFO[SupportedChainId.MAINNET]
 export function getChainInfoOrDefault(chainId: number | undefined) {
+
+  console.log('getChainInfo(chainId)',   {chainId: getChainInfo(chainId)});
+  
   return getChainInfo(chainId) ?? MAINNET_INFO
 }

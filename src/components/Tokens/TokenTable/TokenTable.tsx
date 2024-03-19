@@ -10,7 +10,7 @@ import { MAX_WIDTH_MEDIA_BREAKPOINT } from '../constants'
 import { HeaderRow, LoadedRow, LoadingRow } from './TokenRow'
 import { useTokenQuery } from 'graphql/data/__generated__/types-and-hooks'
 import { ChainName } from '@uniswap/smart-order-router'
-import { useTopMemeTokens } from 'graphql/data/TopMemeTokens'
+// import { useTopMemeTokens } from 'graphql/data/TopMemeTokens'
 
 const GridContainer = styled.div`
   display: flex;
@@ -87,7 +87,7 @@ export default function TokenTable() {
   // console.log('loadingTokens -->',loadingTokens);
   // console.log('sparklines -->',sparklines);  
 
-  const { memetokens, memetokenSortRank, memesparklines, memeloadingTokens } = useTopMemeTokens(chainName)
+  // const { memetokens, memetokenSortRank, memesparklines, memeloadingTokens } = useTopMemeTokens(chainName)
   // console.log('memetokens ========>>>>', memetokens);
   
   // const MemeTokens = async () => {

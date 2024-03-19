@@ -440,6 +440,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } =
     'WETH',
     'Wrapped Ether'
   ),
+  [SupportedChainId.BASE_SEPOLIA]: new Token(
+    SupportedChainId.BASE_SEPOLIA,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
 }
 
 export function isCelo(chainId: number): chainId is SupportedChainId.CELO | SupportedChainId.CELO_ALFAJORES {
@@ -504,7 +511,6 @@ class BscNativeCurrency extends NativeCurrency {
 class ExtendedEther extends Ether {
   public get wrapped(): Token {
     const wrapped = WRAPPED_NATIVE_CURRENCY[this.chainId]
-    console.log('wrapped---' , wrapped);
     if (wrapped) return wrapped
     throw new Error(`Unsupported chain ID: ${this.chainId}`)
   }

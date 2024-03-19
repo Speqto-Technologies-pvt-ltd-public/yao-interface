@@ -211,9 +211,11 @@ function CurrentPriceCard({
 }
 
 function LinkedCurrency({ chainId, currency }: { chainId?: number; currency?: Currency }) {
+  
   const address = (currency as Token)?.address
-
+  
   if (typeof chainId === 'number' && address) {
+    console.log('getTokenLink(chainId, address):'  , getTokenLink(chainId, address));
     return (
       <ExternalLink href={getTokenLink(chainId, address)}>
         <RowFixed>
@@ -365,6 +367,8 @@ export function PositionPageUnsupportedContent() {
 
 export default function PositionPage() {
   const { chainId } = useWeb3React()
+  console.log('chainId:',chainId);
+  
   if (isSupportedChain(chainId)) {
     return <PositionPageContent />
   } else {

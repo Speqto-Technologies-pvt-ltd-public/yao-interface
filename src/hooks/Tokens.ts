@@ -107,11 +107,15 @@ export function useUnsupportedTokens(): { [address: string]: Token } {
       return {}
     }
 
-    if (!listsByUrl) {
-      return {}
-    }
-
+    // if (!listsByUrl) {
+    //   return {}
+    // }
     const listUrl = getChainInfo(chainId).defaultListUrl
+    
+  if (!listUrl || !listsByUrl[listUrl]) {
+    return {}; // Return an empty object if listUrl is not defined or listsByUrl[listUrl] is undefined
+  }
+
 
     const { current: list } = listsByUrl[listUrl]
     if (!list) {

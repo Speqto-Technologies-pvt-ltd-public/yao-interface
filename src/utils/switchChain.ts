@@ -8,12 +8,18 @@ function getRpcUrl(chainId: SupportedChainId): string {
   switch (chainId) {
     case SupportedChainId.MAINNET:
     case SupportedChainId.GOERLI:
-      return RPC_URLS[chainId][0]
-    // Attempting to add a chain using an infura URL will not work, as the URL will be unreachable from the MetaMask background page.
-    // MetaMask allows switching to any publicly reachable URL, but for novel chains, it will display a warning if it is not on the "Safe" list.
-    // See the definition of FALLBACK_URLS for more details.
-    default:
-      return FALLBACK_URLS[chainId][0]
+    //   return RPC_URLS[chainId][0]
+    // // Attempting to add a chain using an infura URL will not work, as the URL will be unreachable from the MetaMask background page.
+    // // MetaMask allows switching to any publicly reachable URL, but for novel chains, it will display a warning if it is not on the "Safe" list.
+    // // See the definition of FALLBACK_URLS for more details.
+    // default:
+    //   return FALLBACK_URLS[chainId][0]
+     // Use type assertion to inform TypeScript about the indexing
+     return (RPC_URLS as Record<SupportedChainId, string[]>)[chainId][0];
+     // For chains other than MAINNET and GOERLI, use fallback URLs
+     default:
+       // Use type assertion to inform TypeScript about the indexing
+       return (FALLBACK_URLS as Record<SupportedChainId, string[]>)[chainId][0];
   }
 }
 
