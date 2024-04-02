@@ -73,6 +73,10 @@ function RemoveLiquidity() {
   // burn state
   const { independentField, typedValue } = useBurnState()
   const { pair, parsedAmounts, error } = useDerivedBurnInfo(currencyA ?? undefined, currencyB ?? undefined)
+
+  console.log('pair:',pair);
+  
+  
   const { onUserInput: _onUserInput } = useBurnActionHandlers()
   const isValid = !error
 

@@ -159,7 +159,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
 
 export default function FullPositionCard({ pair, border, stakedBalance }: PositionCardProps) {
   const { account } = useWeb3React()
-
+  
   const currency0 = unwrappedToken(pair.token0)
   const currency1 = unwrappedToken(pair.token1)
 
@@ -189,7 +189,20 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
           pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false),
         ]
       : [undefined, undefined]
-
+      
+      // console.log('pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false):',pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false));
+      console.log({
+        account:account,
+        token0Deposited:token0Deposited,
+        token1Deposited:token1Deposited,
+        pair:pair,
+        totalPoolTokens:totalPoolTokens,
+        userPoolBalance:userPoolBalance,
+        userDefaultPoolBalance:userDefaultPoolBalance,
+        // check :JSBI.greaterThanOrEqual(totalPoolTokens.quotient, userPoolBalance.quotient),
+        // getLiquidityValue: pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
+      });
+      
   const backgroundColor = useColor(pair?.token0)
 
   return (
@@ -249,7 +262,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
             <FixedHeightRow>
               <RowFixed>
                 <Text fontSize={16} fontWeight={500}>
-                  <Trans>Pooled {currency0.symbol}:</Trans>
+                  <Trans>Pooled V2 {currency0.symbol}:</Trans>
                 </Text>
               </RowFixed>
               {token0Deposited ? (
@@ -267,7 +280,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
             <FixedHeightRow>
               <RowFixed>
                 <Text fontSize={16} fontWeight={500}>
-                  <Trans>Pooled {currency1.symbol}:</Trans>
+                  <Trans>Pooled V2 {currency1.symbol}:</Trans>
                 </Text>
               </RowFixed>
               {token1Deposited ? (

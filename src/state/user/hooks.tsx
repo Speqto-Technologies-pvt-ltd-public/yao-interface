@@ -266,6 +266,11 @@ export function useHideUniswapWalletBanner(): [boolean, () => void] {
 export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
   if (tokenA.chainId !== tokenB.chainId) throw new Error('Not matching chain IDs')
   if (tokenA.equals(tokenB)) throw new Error('Tokens cannot be equal')
+  console.log(tokenA.chainId);
+  console.log(tokenB.chainId);
+  console.log('V2_FACTORY_ADDRESSES[tokenA.chainId]:' , V2_FACTORY_ADDRESSES[tokenA.chainId]);
+  console.log('!V2_FACTORY_ADDRESSES[tokenA.chainId]:',!V2_FACTORY_ADDRESSES[tokenA.chainId]);
+  
   if (!V2_FACTORY_ADDRESSES[tokenA.chainId]) throw new Error('No V2 factory address on this chain')
 
   return new Token(
